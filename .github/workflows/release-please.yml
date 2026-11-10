@@ -1,8 +1,9 @@
-name: release-please
+name: release-please (self-hosted)
 
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -10,7 +11,9 @@ permissions:
 
 jobs:
   release-please:
-    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, auto-telegram-news]
+    timeout-minutes: 30
     steps:
       - uses: googleapis/release-please-action@v4
         with:
