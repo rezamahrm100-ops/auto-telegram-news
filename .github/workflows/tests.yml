@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   pytest:
-    runs-on: [self-hosted, auto-telegram-news]
+    runs-on: self-hosted
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
