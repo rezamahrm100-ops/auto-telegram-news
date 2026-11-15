@@ -3,6 +3,11 @@ name: release-please (self-hosted)
 on:
   push:
     branches: [main]
+    # Central Runner Fabric policy-only commits are not product releases.
+    # Preserve all other main-push and manual release/test behavior.
+    paths-ignore:
+      - 'AGENTS.md'
+      - '.github/owner-runner-fabric/**'
   workflow_dispatch:
 
 permissions:
