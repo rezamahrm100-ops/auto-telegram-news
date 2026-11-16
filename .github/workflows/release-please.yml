@@ -3,6 +3,14 @@ name: release-please (self-hosted)
 on:
   push:
     branches: [main]
+    # Neither central policy inheritance nor workflow-only maintenance
+    # should trigger product tests, release-please or image publication.
+    # Mixed commits with actual application/source changes still trigger.
+    paths-ignore:
+      - 'AGENTS.md'
+      - '.github/owner-runner-fabric/**'
+      - '.github/workflows/tests.yml'
+      - '.github/workflows/release-please.yml'
   workflow_dispatch:
 
 permissions:
