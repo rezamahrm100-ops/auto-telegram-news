@@ -4,11 +4,14 @@ name: Tests (self-hosted)
 on:
   push:
     branches: [main]
-    # Central Runner Fabric policy-only commits are not product releases.
-    # Preserve all other main-push and manual release/test behavior.
+    # Neither central policy inheritance nor workflow-only maintenance
+    # should trigger product tests, release-please or image publication.
+    # Mixed commits with actual application/source changes still trigger.
     paths-ignore:
       - 'AGENTS.md'
       - '.github/owner-runner-fabric/**'
+      - '.github/workflows/tests.yml'
+      - '.github/workflows/release-please.yml'
   workflow_dispatch:
 
 permissions:
